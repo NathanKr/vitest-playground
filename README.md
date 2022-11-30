@@ -1,5 +1,5 @@
 <h2>Motivation</h2>
-Use vitest which is a fast and modern alternative to jest
+Use vitest which is a fast and modern alternative to jest. use also react-testing-library
 
 
 <h2>Setup</h2>
@@ -10,15 +10,12 @@ Use vitest which is a fast and modern alternative to jest
 npm install -D vitest
 ```
 
-
 <h3>package.json </h3>
 add the following under "scripts"
 
 ```json
  "test": "vitest",
- "coverage": "vitest run --coverage"
 ```
-
 
 <h3>vite.config.ts</h3>
 
@@ -28,7 +25,7 @@ add
 /// <reference types="vitest" />
 ```
 
-under defineConfig
+under defineConfig (not sure it is needed)
 
 ```typescript
   test: {
