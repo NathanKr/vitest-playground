@@ -1,11 +1,17 @@
-import { render, screen } from '@testing-library/react';
-import App from '../App';
-describe('App', () => {
- it('renders headline', () => {
-   render(<App  />);
 
-   screen.debug();
+import { getQueriesForElement } from "@testing-library/react";
+import ReactDOM from "react-dom";
+import App from "../App";
 
-   // check if App components renders headline
- });
+describe("Todos test with testing-library", () => {
+  const root = document.createElement("div");
+  const {getByText} = getQueriesForElement(root);
+  beforeAll(() => {
+    ReactDOM.render(<App />, root);
+  });
+  
+  test('Todos text exist',() =>{
+    // --- this is using testing-library/dom
+    expect(getByText("Hello")).not.toBeNull()
+  })
 });

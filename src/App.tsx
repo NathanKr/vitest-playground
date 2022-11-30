@@ -8,6 +8,7 @@ function App() {
 
   return (
     <div>
+      <h1>Hello</h1>
       <h2>check sum(1+2) in the console</h2>
     </div>
   );

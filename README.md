@@ -7,7 +7,7 @@ Use vitest which is a fast and modern alternative to jest. use also react-testin
 <h3>cmd</h3>
 
 ```
-npm install -D vitest
+npm install -D vitest testing-library/jest-dom @testing-library/react @vitejs/plugin-react
 ```
 
 <h3>package.json </h3>
@@ -19,18 +19,39 @@ add the following under "scripts"
 
 <h3>vite.config.ts</h3>
 
-add 
 
 ```typescript
 /// <reference types="vitest" />
-```
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
-under defineConfig (not sure it is needed)
-
-```typescript
+// https://vitejs.dev/config/
+export default defineConfig({
   test: {
     globals: true,
+    environment: 'jsdom',
+    setupFiles: 'src/tests/setup.ts',
   },
+  plugins: [react()],
+} );
+```
+
+<h3>setup.ts</h3>
+
+```typescript
+
+import { expect, afterEach } from 'vitest';
+import { cleanup } from '@testing-library/react';
+import matchers from '@testing-library/jest-dom/matchers';
+
+// extends Vitest's expect method with methods from react-testing-library
+expect.extend(matchers);
+
+// runs a cleanup after each test case (e.g. clearing jsdom)
+afterEach(() => {
+ cleanup();
+});
+
 ```
 
 <h3>utils.test.ts</h3>
@@ -43,4 +64,30 @@ import { sum } from '../logic/utils';
 test('1+2 is 3' , ()=>{
 expect(sum(1,2)).toBe(3)
 })
+```
+
+
+<h3>App.test.tsx</h3>
+
+
+```typescript
+
+import { getQueriesForElement } from "@testing-library/react";
+import ReactDOM from "react-dom";
+import App from "../App";
+
+describe("Todos test with testing-library", () => {
+  const root = document.createElement("div");
+  const {getByText} = getQueriesForElement(root);
+  beforeAll(() => {
+    ReactDOM.render(<App />, root);
+  });
+  
+  test('Todos text exist',() =>{
+    // --- this is using testing-library/dom
+    expect(getByText("Hello")).not.toBeNull()
+  })
+});
+
+
 ```
