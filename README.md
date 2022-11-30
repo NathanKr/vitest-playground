@@ -17,7 +17,7 @@ add the following under "scripts"
  "test": "vitest",
 ```
 
-<h3>vite.config.ts</h3>
+<h3>vite.config.ts in the project root</h3>
 
 
 ```typescript
@@ -36,7 +36,7 @@ export default defineConfig({
 } );
 ```
 
-<h3>setup.ts</h3>
+<h3>setup.ts in the testing directory</h3>
 
 ```typescript
 
@@ -54,7 +54,7 @@ afterEach(() => {
 
 ```
 
-<h3>utils.test.ts</h3>
+<h3>utils.test.ts in the testing directory</h3>
 
 ```typescript
 // --- strange because i use global : true in vite.config.ts
@@ -67,7 +67,7 @@ expect(sum(1,2)).toBe(3)
 ```
 
 
-<h3>App.test.tsx</h3>
+<h3>App.test.tsx in the testing directory</h3>
 
 
 ```typescript
