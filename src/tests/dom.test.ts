@@ -15,4 +15,9 @@ describe('dom tests',()=>{
     test('document has two p',()=>{
         expect(document.querySelectorAll('p').length).toBe(2)
     })
+
+    test('document has three p',()=>{
+        document.body.innerHTML += '<p>!!!!</p>'
+        expect(document.querySelectorAll('p').length).toBe(3)
+    })
 })
