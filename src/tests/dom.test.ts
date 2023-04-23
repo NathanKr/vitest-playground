@@ -2,10 +2,14 @@ import jsdom from 'jsdom'
 const { JSDOM } = jsdom;
 
 describe('dom tests',()=>{
-    beforeAll(()=>{
+    beforeEach(()=>{
         const html = '<!DOCTYPE html><body><p>Hello</p><p>world</p></body></html>'
         const dom = new JSDOM(html);
         global.document = dom.window.document;
+    })
+
+    test('document is the same as global.document',()=>{
+        expect(global.document === document).toBeTruthy()
     })
 
     test('document is not null',()=>{
