@@ -53,8 +53,11 @@ afterEach(() => {
 });
 
 ```
+<h2>Test files</h2>
+
 
 <h3>utils.test.ts in the testing directory</h3>
+<h4>test logic</h4>
 
 ```typescript
 // --- strange because i use global : true in vite.config.ts
@@ -68,7 +71,7 @@ expect(sum(1,2)).toBe(3)
 
 
 <h3>App.test.tsx in the testing directory</h3>
-
+<h4>test react components</h4>
 
 ```typescript
 
@@ -89,5 +92,25 @@ describe("Todos test with testing-library", () => {
   })
 });
 
+
+```
+
+<h3>dom.test.ts in the testing directory</h3>
+<h4>test dom</h4>
+May be used for browser automation test. You can render inside react component but then you need to change the file extension to .tsx
+
+```typescript
+
+describe('dom tests',()=>{
+    test('document is not null',()=>{
+        expect(document).not.toBeNull();
+    })
+
+    test('document.body.innerHTML with new div to be truthy',()=>{
+        document.body.innerHTML += '<div>123</div>'
+        expect(document.body.innerHTML).toBeTruthy();
+        expect(document.body.childNodes.length).toBe(1)
+    })
+})
 
 ```
