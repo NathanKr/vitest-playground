@@ -9,3 +9,5 @@ describe('dom tests',()=>{
         expect(document.body.childNodes.length).toBe(1)
     })
 })
+
+export {} // just to remove build issue
