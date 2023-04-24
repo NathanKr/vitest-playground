@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { sum } from "./logic/utils";
+import { sum } from "./lib/utils";
 
 function App() {
   useEffect(() => {

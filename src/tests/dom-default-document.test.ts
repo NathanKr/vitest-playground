@@ -1,3 +1,10 @@
+/*  default JSDOM is working very partially 
+    not working for querySelectorAll 
+    so dont use it !!!! use 
+    const dom = new JSDOM(html);
+    global.document = dom.window.document;
+    as done in dom.test.ts
+*/
 
 
 describe('dom default document tests',()=>{
