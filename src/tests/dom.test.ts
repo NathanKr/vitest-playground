@@ -1,4 +1,5 @@
 import jsdom from 'jsdom'
+import { addPtoBody } from './utils';
 const { JSDOM } = jsdom;
 
 describe('dom tests',()=>{
@@ -21,7 +22,7 @@ describe('dom tests',()=>{
     })
 
     test('document has three p',()=>{
-        document.body.innerHTML += '<p>!!!!</p>'
+        addPtoBody(1);
         expect(document.querySelectorAll('p').length).toBe(3)
     })
 })

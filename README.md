@@ -56,61 +56,22 @@ afterEach(() => {
 <h2>Test files</h2>
 
 
-<h3>utils.test.ts in the testing directory</h3>
+<h3>utils.test.ts in tests directory</h3>
 <h4>test logic</h4>
 
-```typescript
-// --- strange because i use global : true in vite.config.ts
-import {expect, test} from 'vitest';
-import { sum } from '../logic/utils';
 
-test('1+2 is 3' , ()=>{
-expect(sum(1,2)).toBe(3)
-})
-```
-
-
-<h3>App.test.tsx in the testing directory</h3>
+<h3>App.test.tsx in tests directory</h3>
 <h4>test react components</h4>
 
-```typescript
 
-import { getQueriesForElement } from "@testing-library/react";
-import ReactDOM from "react-dom";
-import App from "../App";
-
-describe("Todos test with testing-library", () => {
-  const root = document.createElement("div");
-  const {getByText} = getQueriesForElement(root);
-  beforeAll(() => {
-    ReactDOM.render(<App />, root);
-  });
-  
-  test('Todos text exist',() =>{
-    // --- this is using testing-library/dom
-    expect(getByText("Hello")).not.toBeNull()
-  })
-});
-
-
-```
-
-<h3>dom.test.ts in the testing directory</h3>
+<h3>dom.test.ts in tests directory</h3>
 <h4>test dom</h4>
 May be used for browser automation test. You can render inside react component but then you need to change the file extension to .tsx
 
-```typescript
 
-describe('dom tests',()=>{
-    test('document is not null',()=>{
-        expect(document).not.toBeNull();
-    })
-
-    test('document.body.innerHTML with new div to be truthy',()=>{
-        document.body.innerHTML += '<div>123</div>'
-        expect(document.body.innerHTML).toBeTruthy();
-        expect(document.body.childNodes.length).toBe(1)
-    })
-})
-
-```
+<h3>mutation-observer.test.ts in tests directory</h3>
+This invokes MutationObserver and there are two points of interest
+<ul>
+<li>MutationObserver is supported in jsdom</li>
+<li>You must have some sleep even for 0 sec so that events can be fetched from the event loop</li>
+</ul>
